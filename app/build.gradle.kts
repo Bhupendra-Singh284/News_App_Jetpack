@@ -1,6 +1,9 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -66,4 +69,45 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+
+    //splash screen
+    implementation("androidx.core:core-splashscreen:1.0.1")
+
+    //compose navigation
+    val navVersion = "2.7.7"
+    implementation("androidx.navigation:navigation-compose:$navVersion")
+
+    //dagger hilt
+    implementation("com.google.dagger:hilt-android:2.49")
+    kapt("com.google.dagger:hilt-android-compiler:2.44")
+    implementation("androidx.hilt:hilt-navigation-fragment:1.2.0")
+
+    //retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.11.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
+
+    //coil
+    implementation("io.coil-kt:coil-compose:2.4.0")
+
+    //data store
+    implementation("androidx.datastore:datastore-preferences:1.1.1")
+
+    //compose foundation
+    implementation("androidx.compose.foundation:foundation:1.6.8")
+
+    //accompanist
+    implementation("com.google.accompanist:accompanist-permissions:0.31.4-beta")
+
+    //paging
+    val pagingVersion = "3.3.0"
+    //noinspection KtxExtensionAvailable
+    implementation("androidx.paging:paging-runtime:$pagingVersion")
+    implementation("androidx.paging:paging-compose:3.3.0")
+
+    //room
+    val roomVersion = "2.6.1"
+    implementation("androidx.room:room-runtime:$roomVersion")
+    //noinspection KaptUsageInsteadOfKsp
+    kapt ("androidx.room:room-compiler:$roomVersion")
+    implementation("androidx.room:room-ktx:2.6.1")
 }
