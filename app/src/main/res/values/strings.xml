@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">News_app_jetpack_compose_mvvm</string>
+
+    <string name="onboarding_title1">
+        Welcome, We got everything to keep you updated.
+    </string>
+    <string name="onboarding_description1">
+        This news app contains news from all genres from sports, music to international affairs and politics.
+    </string>
+    <string name="onboarding_title2">
+        Bookmark news articles you want to save.
+    </string>
+    <string name="onboarding_description2">
+        You can book mark an article by clicking on the bookmark symbol and can see saved articles on bookmark tab.
+    </string>
+    <string name="onboarding_title3">
+        Share what you think others should know.
+    </string>
+    <string name="onboarding_description3">
+       You can share news with your friends by clicking the share icon on top right of article page.
+    </string>
+
+
 </resources>

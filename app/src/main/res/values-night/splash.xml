@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="App.StartingTheme" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/black</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash</item>
+        <item name="postSplashScreenTheme">@style/Theme.News_app_jetpack_compose_mvvm</item>
+    </style>
+    <style name="App.StartingTheme.abc" parent="Theme.SplashScreen">
+
+    </style>
+</resources>
