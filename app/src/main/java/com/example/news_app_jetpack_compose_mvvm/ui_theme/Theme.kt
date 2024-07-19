@@ -1,4 +1,4 @@
-package com.example.news_app_jetpack_compose_mvvm.ui.theme
+package com.example.news_app_jetpack_compose_mvvm.ui_theme
 
 import android.app.Activity
 import android.os.Build

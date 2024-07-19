@@ -1,4 +1,4 @@
-package com.example.news_app_jetpack_compose_mvvm.ui.theme
+package com.example.news_app_jetpack_compose_mvvm.ui_theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

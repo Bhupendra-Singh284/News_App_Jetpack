@@ -1,6 +1,7 @@
 package com.example.news_app_jetpack_compose_mvvm.presentation.onboarding
 
 import android.bluetooth.BluetoothClass.Device
+import android.view.Window
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -8,13 +9,18 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PageSize
 import androidx.compose.foundation.pager.rememberPagerState
@@ -35,7 +41,9 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun OnBoardingScreen(){
+fun OnBoardingScreen(
+     onGetStartedClicked:(OnBoardingEvent)->Unit
+){
     val pages:List<Page> = getPages()
     val pagerState = rememberPagerState(initialPage = 0){pages.size}
     val buttonState = when(pagerState.currentPage){
@@ -44,8 +52,10 @@ fun OnBoardingScreen(){
                 2-> listOf<String>("Back","Get Started")
                 else -> listOf("","")
             }
-    Column(Modifier.fillMaxSize()) {
-    HorizontalPager(state = pagerState, verticalAlignment = Alignment.Top) { index->
+    Column(
+        Modifier
+            .fillMaxSize()) {
+    HorizontalPager(state = pagerState, verticalAlignment = Alignment.Top, beyondBoundsPageCount = 1) { index->
         OnBoardingPage(page = pages[index])
     }
 
@@ -70,7 +80,7 @@ fun OnBoardingScreen(){
 
             NewsButton(text = buttonState[1]) {
                 if(pagerState.currentPage==2){
-
+                    onGetStartedClicked(OnBoardingEvent.OnGetStartedEvent)
                 }else{
                     coroutineScope.launch {
                         pagerState.animateScrollToPage(page=pagerState.currentPage+1)
