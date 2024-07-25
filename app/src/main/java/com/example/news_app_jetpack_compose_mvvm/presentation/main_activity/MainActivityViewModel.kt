@@ -7,6 +7,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.news_app_jetpack_compose_mvvm.domain.use_cases.app_entry.AppEntryUseCases
+import com.example.news_app_jetpack_compose_mvvm.domain.use_cases.app_entry.ReadAppEntry
 import com.example.news_app_jetpack_compose_mvvm.presentation.navigation.Route
 import dagger.hilt.android.HiltAndroidApp
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,7 +19,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainActivityViewModel @Inject constructor(
-    private val appEntryUseCases: AppEntryUseCases
+    private val readAppEntry: ReadAppEntry
 ):ViewModel() {
     var _splashCondition = mutableStateOf(true)
         private set
@@ -28,7 +29,7 @@ class MainActivityViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            appEntryUseCases.readAppEntry().collect{value->
+            readAppEntry().collect{value->
                 if(value){
                     _startDestination.value= Route.NewsNavigation.route
                 }

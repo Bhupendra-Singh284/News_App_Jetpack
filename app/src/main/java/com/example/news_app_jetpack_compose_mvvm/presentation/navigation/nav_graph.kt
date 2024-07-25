@@ -16,6 +16,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.paging.compose.collectAsLazyPagingItems
+import com.example.news_app_jetpack_compose_mvvm.presentation.home.HomeScreen
+import com.example.news_app_jetpack_compose_mvvm.presentation.home.HomeState
+import com.example.news_app_jetpack_compose_mvvm.presentation.home.HomeViewModel
 import com.example.news_app_jetpack_compose_mvvm.presentation.onboarding.OnBoardingEvent
 
 @Composable
@@ -37,9 +41,14 @@ fun NavigationGraph(
         }
         navigation(startDestination= Route.NewsNavigatorScreen.route,route=Route.NewsNavigation.route){
             composable(route = Route.NewsNavigatorScreen.route){
-                Column(Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center) {
-                    Text(text = "User OnBoarded", style = MaterialTheme.typography.displayMedium)
-                }
+                val homeViewModel:HomeViewModel = hiltViewModel()
+                val articles = homeViewModel.news.collectAsLazyPagingItems()
+                HomeScreen(
+                    state = HomeState(),
+                    articles = articles,
+                    navigateToSearch = { /*TODO*/ },
+                    navigateToDetails = {}
+                )
             }
         }
     }

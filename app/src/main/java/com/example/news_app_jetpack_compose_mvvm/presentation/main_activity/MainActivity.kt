@@ -34,9 +34,7 @@ class MainActivity : ComponentActivity() {
             setKeepOnScreenCondition(condition = {
                 mainViewModel._splashCondition.value })
         }
-
         super.onCreate(savedInstanceState)
-
         enableEdgeToEdge()
         setContent {
             News_app_jetpack_compose_mvvmTheme(dynamicColor = false){ // A surface container using the 'background' color from the theme
