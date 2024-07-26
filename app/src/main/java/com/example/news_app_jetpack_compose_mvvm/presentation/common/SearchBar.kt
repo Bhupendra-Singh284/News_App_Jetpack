@@ -1,6 +1,7 @@
 package com.example.news_app_jetpack_compose_mvvm.presentation.common
 
 import android.content.res.Configuration
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -33,18 +34,14 @@ fun SearchBar(
     onSearch:()->Unit,
     onClick:()->Unit
 ) {
-    val isDarkMode = isSystemInDarkTheme()
-    var newModifier = modifier
-    if(!isDarkMode){
-       newModifier = modifier.border(width = 1.dp, color = Color.Black, shape = MaterialTheme.shapes.medium)
-    }
+    val newModifier:Modifier = applyBorderIfLightMode(modifier = modifier)
         Box(modifier=newModifier.clickable { onClick() }){
-            TextField(value = text, onValueChange = onValueChange
-            ,readOnly=readOnly,
+            TextField(value = text, onValueChange = onValueChange,
+            readOnly=readOnly,
                 leadingIcon = {
                     Icon(painter = painterResource(id = R.drawable.ic_search), tint = MaterialTheme.colorScheme.onBackground, contentDescription = null)
                 },
-
+                enabled = !readOnly,
                 placeholder = {
                     Text(
                         text = "Search",
@@ -59,7 +56,9 @@ fun SearchBar(
                     unfocusedTextColor = MaterialTheme.colorScheme.onBackground,
                     focusedTextColor = MaterialTheme.colorScheme.onBackground,
                     unfocusedIndicatorColor = Color.Transparent,
-                    focusedIndicatorColor = Color.Transparent
+                    focusedIndicatorColor = Color.Transparent,
+                    disabledContainerColor = MaterialTheme.colorScheme.tertiaryContainer,
+                    disabledIndicatorColor = Color.Transparent
                 ),
                 singleLine = true,
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
@@ -70,8 +69,19 @@ fun SearchBar(
                 ),
                 textStyle = MaterialTheme.typography.bodySmall,
                 modifier=Modifier.fillMaxWidth()
+                    //.clickable { onClick() }
             )
         }
+}
+
+@Composable
+fun applyBorderIfLightMode(modifier: Modifier):Modifier{
+    val isDarkMode = isSystemInDarkTheme()
+    var result:Modifier = modifier
+    if(!isDarkMode){
+        result =modifier.border(width = 1.dp, color = Color.Black, shape = MaterialTheme.shapes.medium)
+    }
+    return result
 }
 
 @Preview(showBackground = true)

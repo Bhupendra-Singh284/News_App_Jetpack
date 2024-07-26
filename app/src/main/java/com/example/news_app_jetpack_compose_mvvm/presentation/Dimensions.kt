@@ -9,3 +9,4 @@ val mediumPadding1 = 24.dp
 val indicatorSize = 14.dp
 val articleCardSize = 96.dp
 val article_Card_Small_Icon_Size= 11.dp
+val articleImageHeight= 248.dp

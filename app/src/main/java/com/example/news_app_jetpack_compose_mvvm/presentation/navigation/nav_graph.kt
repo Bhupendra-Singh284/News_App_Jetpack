@@ -17,10 +17,13 @@ import androidx.compose.material3.Text
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.collectAsLazyPagingItems
+import com.example.news_app_jetpack_compose_mvvm.presentation.details.DetailsViewModel
 import com.example.news_app_jetpack_compose_mvvm.presentation.home.HomeScreen
 import com.example.news_app_jetpack_compose_mvvm.presentation.home.HomeState
 import com.example.news_app_jetpack_compose_mvvm.presentation.home.HomeViewModel
 import com.example.news_app_jetpack_compose_mvvm.presentation.onboarding.OnBoardingEvent
+import com.example.news_app_jetpack_compose_mvvm.presentation.search.SearchScreen
+import com.example.news_app_jetpack_compose_mvvm.presentation.search.SearchViewModel
 
 @Composable
 fun NavigationGraph(
@@ -46,10 +49,12 @@ fun NavigationGraph(
                 HomeScreen(
                     state = HomeState(),
                     articles = articles,
-                    navigateToSearch = { /*TODO*/ },
+                    navigateToSearch = {},
                     navigateToDetails = {}
                 )
+                 }
             }
         }
     }
-}
+
+

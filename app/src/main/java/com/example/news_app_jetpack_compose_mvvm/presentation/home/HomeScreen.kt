@@ -50,7 +50,7 @@ fun HomeScreen(
             readOnly = true,
             onValueChange= {},
             onSearch = {},
-            onClick = navigateToSearch
+            onClick = {navigateToSearch()}
         )
         Spacer(modifier = Modifier.height(mediumPadding1))
         ArticleList(modifier=Modifier.padding(horizontal = mediumPadding1),articles = articles, onClick = navigateToDetails)
