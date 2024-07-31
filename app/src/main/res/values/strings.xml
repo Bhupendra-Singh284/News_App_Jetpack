@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">News_app_jetpack_compose_mvvm</string>
+    <string name="app_name">News Point</string>
 
     <string name="onboarding_title1">
         Welcome, We got everything to keep you updated.

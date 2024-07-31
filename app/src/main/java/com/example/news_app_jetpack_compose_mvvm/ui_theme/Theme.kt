@@ -14,27 +14,39 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.core.view.WindowCompat
+import com.example.news_app_jetpack_compose_mvvm.R
+
+
+val leagueSpartansFamily = FontFamily(
+    Font(R.font.league_spartan_medium, FontWeight.Medium),
+    Font(R.font.league_spartan_regular, FontWeight.Normal),
+    Font(R.font.league_spartan_semi_bold, FontWeight.SemiBold),
+    Font(R.font.league_spartan_bold, FontWeight.Bold),
+)
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
+    primary = white1,
     secondary = PurpleGrey80,
     tertiary = Pink80,
     background = Color.Black,
-    onBackground = Color.White,
+    onBackground = white1,
     primaryContainer = Color.Blue,
-    onPrimaryContainer = Color.White,
+    onPrimaryContainer = white1,
     secondaryContainer = Color.Gray,
-    onSecondaryContainer = Color.White,
+    onSecondaryContainer = white1,
     surface = Color.Black,
-    onSurface = Color.White,
+    onSurface = white1,
     onSurfaceVariant = Color.Gray,
-    tertiaryContainer = Color.Gray,
-    onTertiaryContainer = Color.LightGray
+    tertiaryContainer = gray1,
+    onTertiaryContainer = Color.LightGray,
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
+    primary = appIconBlue,
     secondary = PurpleGrey40,
     tertiary = Pink40,
     background = Color.White,
@@ -47,7 +59,7 @@ private val LightColorScheme = lightColorScheme(
     onSurface = Color.Black,
     onSurfaceVariant = Color.Gray,
     tertiaryContainer = Color.White,
-    onTertiaryContainer = Color.Black
+    onTertiaryContainer = Color.Black,
 
     /* Other default colors to override
     background = Color(0xFFFFFBFE),

@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
+import com.example.news_app_jetpack_compose_mvvm.R
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.sharp.Info
@@ -22,6 +23,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
@@ -32,7 +34,21 @@ import com.example.news_app_jetpack_compose_mvvm.presentation.extraSmallPadding
 import com.example.news_app_jetpack_compose_mvvm.presentation.extraSmallPadding2
 import com.example.news_app_jetpack_compose_mvvm.presentation.mediumPadding1
 import com.example.news_app_jetpack_compose_mvvm.presentation.paddingSmall1
+import com.example.news_app_jetpack_compose_mvvm.ui_theme.gray2
 import kotlinx.coroutines.flow.Flow
+
+@Composable
+fun ArticleList(
+    modifier:Modifier=Modifier,
+    articles: List<Article>,
+    onClick:(Article)->Unit
+){
+    LazyColumn(modifier =  modifier.fillMaxSize()){
+        items(count = articles.size){index ->  
+            ArticleCard(article = articles[index], onClick = onClick)
+        }
+    }
+}
 
 @Composable
 fun ArticleList(
@@ -42,10 +58,8 @@ fun ArticleList(
 ){
     val handlePagingResult = handlePagingResult(articles)
     if(handlePagingResult){
-        LazyColumn(
-            modifier=modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.SpaceAround,
-            ) {
+        LazyColumn( modifier=modifier.fillMaxSize())
+        {
             items(count= articles.itemCount)
             {
                 articles[it]?.let {
@@ -63,23 +77,29 @@ fun ArticleList(
 @Composable
 fun handlePagingResult(articles: LazyPagingItems<Article>):Boolean{
     val loadState = articles.loadState
+    var appendError=false
     val error = when{
         loadState.refresh is LoadState.Error -> loadState.refresh as LoadState.Error
-        loadState.append is LoadState.Error -> loadState.refresh as LoadState.Error
-        loadState.prepend is LoadState.Error -> loadState.refresh as LoadState.Error
+        loadState.append is LoadState.Error -> {
+            appendError=true
+            loadState.append as LoadState.Error}
+        loadState.prepend is LoadState.Error -> loadState.prepend as LoadState.Error
         else->null
     }
 
     return when{
         loadState.refresh is LoadState.Loading->{
-            Column(Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
+            Column(Modifier.fillMaxSize().wrapContentSize(align = Alignment.Center)) {
                 CircularProgressIndicator()
             }
             false
         }
-        error!=null->{
-            ErrorScreen()
-            false
+        error !=null->{
+            if(!appendError){
+                ErrorScreen()
+                return false
+            }
+            true
         }
         else-> true
     }
@@ -94,14 +114,13 @@ fun ErrorScreen(){
         ) {
             Icon(
                 modifier=Modifier.size(100.dp) ,
-                imageVector = Icons.Sharp.Info,
+                painter = painterResource(id = R.drawable.ic_network_error),
                 contentDescription = "",
-                tint = Color.Gray
+                tint = gray2
             )
-            Spacer(modifier = Modifier.height(40.dp))
+            Spacer(modifier = Modifier.height(15.dp))
             Text(
-                text = "OOPS! Something went wrong\n, Please try again later",
-                style = MaterialTheme.typography.titleLarge,
+                text = "Unknown error,\n Please try again later",
                 textAlign = TextAlign.Center,
                 color = Color.Gray
             )

@@ -23,9 +23,11 @@ class SearchPagingSource(
         return try {
             val newsResponse = newsApi.searchNews(searchQuery=searchQuery,page=page, sources = sources)
             totalNewsCount+=newsResponse.articles.size
-            LoadResult.Page(data= newsResponse.articles.distinctBy { it.title },
+            LoadResult.Page(
+                data= newsResponse.articles.distinctBy { it.title },
                 nextKey = if(newsResponse.totalResults==totalNewsCount) null else page +1,
-                prevKey = if(page==1) null else page-1)
+                prevKey = if(page==1) null else page-1
+            )
         }catch (e:Exception){
             LoadResult.Error(
                 throwable = e

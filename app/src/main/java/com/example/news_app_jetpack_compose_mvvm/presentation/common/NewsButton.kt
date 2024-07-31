@@ -17,10 +17,16 @@ fun NewsButton(
     onClick:()->Unit
 
 ) {
-    Button(modifier=Modifier.padding(horizontal = 10.dp),onClick = onClick, colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primaryContainer, contentColor = MaterialTheme.colorScheme.onPrimaryContainer)
+    Button(
+        modifier=Modifier.padding(horizontal = 10.dp),
+        onClick = onClick,
+        colors = ButtonDefaults.buttonColors(
+                containerColor = MaterialTheme.colorScheme.primaryContainer,
+                contentColor = MaterialTheme.colorScheme.onPrimaryContainer
+            )
     ,   shape = RoundedCornerShape(6.dp)
     ) {
-        Text(text,style=MaterialTheme.typography.labelLarge .copy(fontWeight = FontWeight.SemiBold))
+        Text(text, style=MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold))
     }
 }
 @Composable
@@ -28,9 +34,15 @@ fun NewsTextButton(
     text:String,
     onClick:()->Unit
 ) {
-    Button(onClick = onClick, colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondaryContainer, contentColor = MaterialTheme.colorScheme.onSecondaryContainer)
+    Button(
+        onClick = onClick,
+        colors = ButtonDefaults.buttonColors(
+            containerColor = MaterialTheme.colorScheme.secondaryContainer,
+            contentColor = MaterialTheme.colorScheme.onSecondaryContainer
+        )
     ,   shape = RoundedCornerShape(6.dp)
     ) {
-        Text(text,style=MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold))
+        Text(text,
+            style=MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold))
     }
 }

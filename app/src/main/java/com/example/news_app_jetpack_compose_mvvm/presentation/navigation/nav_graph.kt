@@ -21,6 +21,7 @@ import com.example.news_app_jetpack_compose_mvvm.presentation.details.DetailsVie
 import com.example.news_app_jetpack_compose_mvvm.presentation.home.HomeScreen
 import com.example.news_app_jetpack_compose_mvvm.presentation.home.HomeState
 import com.example.news_app_jetpack_compose_mvvm.presentation.home.HomeViewModel
+import com.example.news_app_jetpack_compose_mvvm.presentation.news_navigator.NewsNavigator
 import com.example.news_app_jetpack_compose_mvvm.presentation.onboarding.OnBoardingEvent
 import com.example.news_app_jetpack_compose_mvvm.presentation.search.SearchScreen
 import com.example.news_app_jetpack_compose_mvvm.presentation.search.SearchViewModel
@@ -44,14 +45,7 @@ fun NavigationGraph(
         }
         navigation(startDestination= Route.NewsNavigatorScreen.route,route=Route.NewsNavigation.route){
             composable(route = Route.NewsNavigatorScreen.route){
-                val homeViewModel:HomeViewModel = hiltViewModel()
-                val articles = homeViewModel.news.collectAsLazyPagingItems()
-                HomeScreen(
-                    state = HomeState(),
-                    articles = articles,
-                    navigateToSearch = {},
-                    navigateToDetails = {}
-                )
+                    NewsNavigator()
                  }
             }
         }

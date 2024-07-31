@@ -1,19 +1,12 @@
 package com.example.news_app_jetpack_compose_mvvm.presentation.main_activity
 
-import android.util.Log
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.news_app_jetpack_compose_mvvm.domain.use_cases.app_entry.AppEntryUseCases
 import com.example.news_app_jetpack_compose_mvvm.domain.use_cases.app_entry.ReadAppEntry
 import com.example.news_app_jetpack_compose_mvvm.presentation.navigation.Route
-import dagger.hilt.android.HiltAndroidApp
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

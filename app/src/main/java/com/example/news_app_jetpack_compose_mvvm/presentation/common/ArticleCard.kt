@@ -39,11 +39,11 @@ import androidx.compose.ui.unit.dp
 fun ArticleCard(
     modifier: Modifier=Modifier,
     article: Article,
-    onClick:(()->Unit)?= null
+    onClick:((Article)->Unit)?= null
 ){
     val context = LocalContext.current
     Row(
-        modifier.clickable{onClick?.invoke()}
+        modifier.clickable{onClick?.invoke(article)}
     ) {
         AsyncImage(
             modifier = Modifier
@@ -96,22 +96,22 @@ fun ArticleCard(
     }
 }
 
-@Preview(showBackground = true)
-@Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
-@Composable
-fun ArticleCardPreview() {
-    News_app_jetpack_compose_mvvmTheme(dynamicColor = false) {
-        ArticleCard(
-            article = Article(
-                author = "",
-                content = "",
-                description = "",
-                publishedAt = "2 hours",
-                source = Source(id = "", name = "BBC"),
-                title = "Her train broke down. Her phone died. And then she met her Saver in a",
-                url = "",
-                urlToImage = "https://ichef.bbci.co.uk/live-experience/cps/624/cpsprodpb/11787/production/_124395517_bbcbreakingnewsgraphic.jpg"
-            ), onClick = {}
-        )
-    }
-}
+//@Preview(showBackground = true)
+//@Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
+//@Composable
+//fun ArticleCardPreview() {
+//    News_app_jetpack_compose_mvvmTheme(dynamicColor = false) {
+//        ArticleCard(
+//            article = Article(
+//                author = "",
+//                content = "",
+//                description = "",
+//                publishedAt = "2 hours",
+//                source = Source(id = "", name = "BBC"),
+//                title = "Her train broke down. Her phone died. And then she met her Saver in a",
+//                url = "",
+//                urlToImage = "https://ichef.bbci.co.uk/live-experience/cps/624/cpsprodpb/11787/production/_124395517_bbcbreakingnewsgraphic.jpg"
+//            ), onClick = {}
+//        )
+//    }
+//}

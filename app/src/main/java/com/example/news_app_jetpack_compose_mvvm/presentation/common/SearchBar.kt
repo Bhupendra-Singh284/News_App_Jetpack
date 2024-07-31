@@ -34,20 +34,23 @@ fun SearchBar(
     onSearch:()->Unit,
     onClick:()->Unit
 ) {
+
     val newModifier:Modifier = applyBorderIfLightMode(modifier = modifier)
-        Box(modifier=newModifier.clickable { onClick() }){
-            TextField(value = text, onValueChange = onValueChange,
-            readOnly=readOnly,
+        Box( modifier=newModifier.clickable { onClick() } )
+        {
+            TextField(
+                value = text, onValueChange = onValueChange,
+                readOnly=readOnly,
                 leadingIcon = {
-                    Icon(painter = painterResource(id = R.drawable.ic_search), tint = MaterialTheme.colorScheme.onBackground, contentDescription = null)
+                    Icon(painter = painterResource(id = R.drawable.ic_search),
+                        tint = MaterialTheme.colorScheme.onBackground,
+                        contentDescription = null)
                 },
                 enabled = !readOnly,
                 placeholder = {
-                    Text(
-                        text = "Search",
+                    Text(text = "Search",
                         style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onBackground
-                    )
+                        color = MaterialTheme.colorScheme.onBackground)
                 },
                 shape = MaterialTheme.shapes.medium,
                 colors = TextFieldDefaults.colors(
@@ -63,13 +66,10 @@ fun SearchBar(
                 singleLine = true,
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
                 keyboardActions = KeyboardActions(
-                    onSearch={
-                        onSearch()
-                    }
+                    onSearch={ onSearch() }
                 ),
                 textStyle = MaterialTheme.typography.bodySmall,
                 modifier=Modifier.fillMaxWidth()
-                    //.clickable { onClick() }
             )
         }
 }
@@ -84,13 +84,13 @@ fun applyBorderIfLightMode(modifier: Modifier):Modifier{
     return result
 }
 
-@Preview(showBackground = true)
-@Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
-@Composable
-fun SearchBarPreview() {
-    News_app_jetpack_compose_mvvmTheme {
-        SearchBar(text = "", onValueChange = {}, readOnly = false, onSearch = {}) {
-
-        }
-    }
-}
+//@Preview(showBackground = true)
+//@Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
+//@Composable
+//fun SearchBarPreview() {
+//    News_app_jetpack_compose_mvvmTheme {
+//        SearchBar(text = "", onValueChange = {}, readOnly = false, onSearch = {}) {
+//
+//        }
+//    }
+//}

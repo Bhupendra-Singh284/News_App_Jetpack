@@ -2,7 +2,7 @@
 <resources>
     <style name="App.StartingTheme" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/white</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/app_icon</item>
         <item name="postSplashScreenTheme">@style/Theme.News_app_jetpack_compose_mvvm</item>
     </style>
 </resources>

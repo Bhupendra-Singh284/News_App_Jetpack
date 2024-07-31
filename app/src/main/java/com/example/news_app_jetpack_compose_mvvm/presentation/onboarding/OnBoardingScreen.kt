@@ -55,7 +55,7 @@ fun OnBoardingScreen(
     Column(
         Modifier
             .fillMaxSize()) {
-    HorizontalPager(state = pagerState, verticalAlignment = Alignment.Top, beyondBoundsPageCount = 1) { index->
+    HorizontalPager(state = pagerState, verticalAlignment = Alignment.Top) { index->
         OnBoardingPage(page = pages[index])
     }
 
