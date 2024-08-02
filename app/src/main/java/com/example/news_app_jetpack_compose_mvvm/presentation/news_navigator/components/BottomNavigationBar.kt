@@ -37,11 +37,8 @@ fun NewsBottomBar(
     selectedItem:Int,
     onItemClick:(Int)->Unit
 ){
-    Log.d("MainActivity", "Bottom Bar Recreated")
-
 
     val tonalElevation = getTonalElevation()
-
         NavigationBar(
             modifier=Modifier.fillMaxWidth()
             ,containerColor = MaterialTheme.colorScheme.background

@@ -64,7 +64,7 @@ fun ArticleCard(
                 .height(articleCardSize)
         ) {
             Text(
-                article.title,
+                article.title?:"",
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurface,
                 maxLines = 2,
@@ -74,7 +74,7 @@ fun ArticleCard(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = article.source.name,
+                    text = article.source?.name?:"",
                     style = MaterialTheme.typography.labelSmall.copy(fontWeight = FontWeight.Bold),
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
@@ -87,7 +87,7 @@ fun ArticleCard(
                 Spacer(modifier = Modifier.padding(extraSmallPadding))
                 Text(
                     maxLines = 1,
-                    text =  article.publishedAt,
+                    text =  article.publishedAt?:"",
                     style = MaterialTheme.typography.labelSmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )

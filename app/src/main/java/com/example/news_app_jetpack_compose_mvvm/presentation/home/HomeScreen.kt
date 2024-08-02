@@ -1,6 +1,8 @@
 package com.example.news_app_jetpack_compose_mvvm.presentation.home
 
+import android.util.Log
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -34,7 +36,6 @@ import com.example.news_app_jetpack_compose_mvvm.ui_theme.leagueSpartansFamily
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
-    state:HomeState,
     articles:LazyPagingItems<Article>,
     navigateToSearch:()->Unit,
     navigateToDetails:(Article)->Unit
@@ -43,6 +44,7 @@ fun HomeScreen(
         modifier
             .fillMaxSize()
             .statusBarsPadding()
+             .background(color = MaterialTheme.colorScheme.background)
     ) {
         Row(Modifier.fillMaxWidth().padding(horizontal = mediumPadding1, vertical = 15.dp), verticalAlignment = Alignment.CenterVertically) {
             Image(

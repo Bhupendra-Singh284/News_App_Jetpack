@@ -46,7 +46,6 @@ fun DetailsScreen(
     onEvent: (DetailEvent)->Unit,
     navigateBack:()->Unit
 ){
-    Log.d("MainActivity","DetailsScreenCalled, ArticleName:${article.title}")
     val context = LocalContext.current
     Column(
         Modifier
@@ -89,9 +88,9 @@ fun DetailsScreen(
                     .clip(MaterialTheme.shapes.medium), model = ImageRequest.Builder(LocalContext.current).data(article.urlToImage).build(),
                     contentDescription = null, contentScale = ContentScale.Crop)
                 Spacer(modifier = Modifier.height(mediumPadding1))
-                Text(text = article.title, style = MaterialTheme.typography.titleLarge, maxLines = 2, overflow = TextOverflow.Ellipsis, color = MaterialTheme.colorScheme.onBackground)
+                Text(text = article.title?:"", style = MaterialTheme.typography.titleLarge, maxLines = 2, overflow = TextOverflow.Ellipsis, color = MaterialTheme.colorScheme.onBackground)
                 Spacer(modifier = Modifier.height(paddingSmall1))
-                Text(text = article.content, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onBackground)
+                Text(text = article.content?:"", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onBackground)
             }
         }
     }

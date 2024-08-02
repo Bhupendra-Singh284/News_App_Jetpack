@@ -35,24 +35,20 @@ import com.example.news_app_jetpack_compose_mvvm.presentation.search.SearchViewM
 
 @Composable
 fun NewsNavigator(){
-    Log.d("MainActivity", "News Navigator Recreated")
 
     val navController = rememberNavController()
 
-
     val backStackState= navController.currentBackStackEntryAsState()
-
-    Log.d("MainActivity","CurrentDestination: ${navController.currentDestination?.route}, BackStack Size: ${backStackState.value?.destination?.hierarchy?.count()}")
 
     val isBottomBarVisible = remember(key1 = backStackState.value) {
         when(backStackState.value?.destination?.route){
             Route.DetailsScreen.route-> false
+           // Route.HomeScreen.route->false
             null->false
             else->true
         }
     }
 
-    Log.d("MainActivity", "Destination:${navController.currentDestination?.route}, isBottomBarVisible:$isBottomBarVisible")
     var selectedItem:Int by rememberSaveable {
         mutableIntStateOf(0)
     }
@@ -61,7 +57,7 @@ fun NewsNavigator(){
         Route.HomeScreen.route->0
         Route.SearchScreen.route->1
         Route.BookmarkScreen.route->2
-        else->0
+        else->3
     }
 
     Scaffold(
@@ -106,8 +102,7 @@ fun NewsNavigator(){
                     state = searchViewModel.state.value,
                     onEvent = searchViewModel::onEvent,
                     navigateToDetails = {
-                        article ->
-                        Log.d("MainActivity","details Nav called , article: ${article.title}")
+                            article ->
                         navigateToDetails(navController,article)
                     }
                 )
@@ -119,17 +114,15 @@ fun NewsNavigator(){
                 BookmarkScreen(
                     state = bookMarkViewModel.state.value,
                     onClick = {
-                        article -> navigateToDetails(navController = navController,article)
+                            article -> navigateToDetails(navController = navController,article)
                     }
                 )
             }
 
 
             composable(route=Route.DetailsScreen.route) {
-                Log.d("MainActivity","Inside detail screen route")
                 navController.previousBackStackEntry?.savedStateHandle?.get<Article>("article")?.let{
                     article->
-                    Log.d("MainActivity","Article Received")
                     BackHandler {
                         navController.previousBackStackEntry?.savedStateHandle?.remove<Article>("article")
                         navController.popBackStack()
@@ -151,13 +144,12 @@ fun NewsNavigator(){
                 val homeViewModel: HomeViewModel = hiltViewModel()
                 val articles = homeViewModel.news.collectAsLazyPagingItems()
                 HomeScreen(
-                    state = HomeState(),
                     articles = articles,
                     navigateToSearch = {
                         navigateToTab(navController,Route.SearchScreen.route)
                     },
                     navigateToDetails = {
-                        article-> navigateToDetails(navController,article)
+                            article-> navigateToDetails(navController,article)
                     }
                 )
             }
