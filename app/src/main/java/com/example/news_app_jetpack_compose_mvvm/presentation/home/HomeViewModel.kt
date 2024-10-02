@@ -11,7 +11,7 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val getNews: GetNews
 ) :ViewModel() {
-    val news = getNews(sources = listOf("bbc-news","abc-news","al-jazeera-english"))
+    val news = getNews(sources = listOf("bbc-news","abc-news","al-jazeera-english","wired","business-insider","techcrunch","the-verge"))
         .cachedIn(viewModelScope)
 }
 
